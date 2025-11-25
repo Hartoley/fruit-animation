@@ -55,7 +55,7 @@ export default function FruitAnimation() {
     <div className="w-screen h-screen relative overflow-hidden font-mono">
       {/* HEADER */}
       <header className="absolute top-0 w-full z-50 flex justify-between items-center px-12 py-3 font-bold text-lg text-white">
-        <div>LUNDEV</div>
+        <div>KEENA</div>
         <ul className="flex gap-6">
           <li>HOME</li>
           <li>CONTACT</li>
