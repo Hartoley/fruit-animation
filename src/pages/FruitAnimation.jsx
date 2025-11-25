@@ -16,11 +16,32 @@ const slides = [
 export default function FruitAnimation() {
   const [index, setIndex] = useState(0);
   const [offset, setOffset] = useState(0);
+  const [cycle, setCycle] = useState(0);
 
   // Next slide
   const next = () => {
-    setIndex((i) => (i + 1) % slides.length);
-    setOffset((o) => o - 250); // always move forward
+    setIndex((i) => {
+      const newIndex = (i + 1) % slides.length;
+
+      // Count a full cycle when we loop back to the first slide
+      if (newIndex === 0) {
+        setCycle((c) => {
+          const newC = c + 1;
+
+          // Restart after 2 completed cycles
+          if (newC >= 4) {
+            setOffset(0); // Reset scrolling
+            return 0; // Reset cycle count
+          }
+
+          return newC;
+        });
+      }
+
+      return newIndex;
+    });
+
+    setOffset((o) => o - 250); // continue sliding forward
   };
 
   // Previous slide (still moves forward)
