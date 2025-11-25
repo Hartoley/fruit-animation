@@ -8,9 +8,9 @@ import listSoda from "../assets/fruits/listSoda.jpg";
 import leavesImg from "../assets/fruits/leaves.png";
 
 const slides = [
-  { name: "Strawberry", bg: "#EA3D41", img: strawberry },
-  { name: "Avocado", bg: "#2D5643", img: avocado },
-  { name: "Orange", bg: "#E7A043", img: orange },
+  { name: "Strawberry", bg: "#EA3D41", img: strawberry, left: "0%" },
+  { name: "Avocado", bg: "#2D5643", img: avocado, left: "-250px" },
+  { name: "Orange", bg: "#E7A043", img: orange, left: "-500px" },
 ];
 
 export default function FruitAnimation() {
@@ -89,43 +89,46 @@ export default function FruitAnimation() {
         />
 
         {/* INCOMING HIDDEN */}
+        <div className="absolute text-white font-extrabold uppercase text-[6rem] md:text-[12rem] opacity-0">
+          {hidden.name}
+        </div>
         <img
           src={hidden.img}
-          alt=""
-          className="absolute w-[90%] left-1/2 pointer-events-none opacity-0"
+          alt={hidden.name}
+          className="absolute w-[90%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 pointer-events-none"
           style={{
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-            animation:
-              direction === "prev"
-                ? "toOutPrev 0.8s ease-in-out forwards"
-                : "toOutUp 0.8s ease-in-out forwards",
+            animation: "toOut 0.8s ease-in-out forwards",
           }}
         />
       </div>
 
-      {/* Soda CAN MASK */}
+      {/* Mockup */}
       <div
-        className="absolute top-1/2 left-1/2 z-10"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
         style={{
           width: "calc(371px / 1.5)",
           height: "calc(673px / 1.5)",
-          transform: "translate(-50%, -50%)",
           overflow: "hidden",
           borderRadius: "20px",
+          backgroundColor: "transparent",
         }}
       >
         <div
           className="w-full h-full"
           style={{
-            backgroundImage: `url(${mockup}), url(${listSoda})`,
-            backgroundPosition: `0 0, ${offset}px 0`,
-            backgroundRepeat: "no-repeat, repeat-x",
-            backgroundSize: "auto 100%, auto 100%",
+            width: "100%",
+            height: "100%",
+            backgroundImage: `url(${listSoda})`,
+            backgroundPosition: `${active.left} 0`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "auto 100%",
+            transition: "background-position 0.5s",
             WebkitMaskImage: `url(${mockup})`,
-            WebkitMaskSize: "auto 100%",
             WebkitMaskRepeat: "no-repeat",
-            transition: "background-position 0.6s ease-in-out",
+            WebkitMaskSize: "cover",
+            maskImage: `url(${mockup})`,
+            maskRepeat: "no-repeat",
+            maskSize: "cover",
           }}
         />
       </div>
@@ -172,6 +175,20 @@ export default function FruitAnimation() {
 
       {/* Animation Keyframes */}
       <style>{`
+             @keyframes toOut {
+          from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+          to { transform: translate(-50%, -60%) scale(0); opacity: 0; }
+        }
+
+                @keyframes toActivePrev {
+          from { transform: translate(-50%, -40%) scale(0); opacity: 0; }
+          to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+         @keyframes toActive {
+          from { transform: translate(-50%, -60%) scale(0); opacity: 0; }
+          to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
         @keyframes toActiveUp {
           from { top: 100%; opacity: 0; }
           to { top: 50%; opacity: 1; }
