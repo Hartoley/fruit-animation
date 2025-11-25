@@ -29,7 +29,7 @@ export default function FruitAnimation() {
           const newC = c + 1;
 
           // Restart after 2 completed cycles
-          if (newC >= 4) {
+          if (newC >= 5) {
             setOffset(0); // Reset scrolling
             return 0; // Reset cycle count
           }
