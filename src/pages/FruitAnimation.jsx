@@ -69,7 +69,18 @@ export default function FruitAnimation() {
         className="absolute inset-0 flex items-center justify-center"
         style={{ backgroundColor: active.bg }}
       >
-        <div className="absolute text-white font-extrabold uppercase text-[6rem] md:text-[12rem] z-0">
+        <div
+          className="absolute text-white font-extrabold uppercase text-[6rem] md:text-[12rem] z-0"
+          style={{
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            animation:
+              direction === "prev"
+                ? "toActivePrev 0.6s ease-in-out forwards"
+                : "toActiveUp 0.6s ease-in-out forwards",
+          }}
+        >
           {active.name}
         </div>
 
