@@ -104,11 +104,13 @@ export default function FruitAnimation() {
           style={{
             width: "100%",
             height: "100%",
-            backgroundImage: `url(${listSoda})`,
-            backgroundPosition: `${offset}px 0`, // ✅ smooth infinite
-            backgroundRepeat: "repeat-x",
-            backgroundSize: "auto 100%",
+            backgroundImage: `url(${mockup}), url(${listSoda})`, // two layers
+            backgroundRepeat: "no-repeat, repeat-x",
+            backgroundPosition: `center, ${offset}px 0`,
+            backgroundSize: "cover, auto 100%",
+            backgroundBlendMode: "multiply",
             transition: "background-position 0.5s linear",
+
             WebkitMaskImage: `url(${mockup})`,
             WebkitMaskRepeat: "no-repeat",
             WebkitMaskSize: "cover",
