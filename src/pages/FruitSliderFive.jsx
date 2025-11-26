@@ -16,7 +16,7 @@ const slides = [
   { name: "Strawberry", bg: "#ea3d41", img: strawberry },
   { name: "Avocado", bg: "#2d5643", img: avocado },
   { name: "Cherry", bg: "#570e13", img: cherry },
-  { name: "Grapes", bg: "#121845", img: grapes },
+  { name: "Grapes", bg: "#3f133b", img: grapes },
 ];
 
 export default function FruitSliderFive() {
