@@ -12,11 +12,11 @@ import leavesImg from "../assets/fruits/leaves.png";
 
 // 5-SLIDE DATA
 const slides = [
-  { name: "Orange", bg: "#E7C78C", img: orange },
-  { name: "Strawberry", bg: "#D47993", img: strawberry },
-  { name: "Avocado", bg: "#F7F7BB", img: avocado },
-  { name: "Cherry", bg: "#D86A60", img: cherry },
-  { name: "Grapes", bg: "#C67AC0", img: grapes },
+  { name: "Orange", bg: "#e7a043", img: orange },
+  { name: "Strawberry", bg: "#ea3d41", img: strawberry },
+  { name: "Avocado", bg: "#2d5643", img: avocado },
+  { name: "Cherry", bg: "#570e13", img: cherry },
+  { name: "Grapes", bg: "#121845", img: grapes },
 ];
 
 export default function FruitSliderFive() {
@@ -35,7 +35,7 @@ export default function FruitSliderFive() {
           const newC = c + 1;
 
           // Restart scrolling background every 5 loops
-          if (newC >= 5) {
+          if (newC >= 4) {
             setOffset(0);
             return 0;
           }
