@@ -21,6 +21,7 @@ const slides = [
 
 export default function FruitSliderFive() {
   const [index, setIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState(0);
   const [offset, setOffset] = useState(0);
   const [cycle, setCycle] = useState(0);
 
@@ -29,17 +30,15 @@ export default function FruitSliderFive() {
     setIndex((i) => {
       const newIndex = (i + 1) % slides.length;
 
-      // When reaching slide 0 again, it means a full loop has completed
+      setPrevIndex(i); // Track the outgoing slide
+
       if (newIndex === 0) {
         setCycle((c) => {
           const newC = c + 1;
-
-          // Restart scrolling background every 5 loops
           if (newC >= 4) {
             setOffset(0);
             return 0;
           }
-
           return newC;
         });
       }
@@ -47,13 +46,17 @@ export default function FruitSliderFive() {
       return newIndex;
     });
 
-    // Continue soda scroll
     setOffset((o) => o - 250);
   };
 
-  // PREV (you still want forward scroll)
+  // PREV
   const prev = () => {
-    setIndex((i) => (i - 1 + slides.length) % slides.length);
+    setIndex((i) => {
+      const newIndex = (i - 1 + slides.length) % slides.length;
+      setPrevIndex(i);
+      return newIndex;
+    });
+
     setOffset((o) => o - 250);
   };
 
@@ -64,7 +67,7 @@ export default function FruitSliderFive() {
   }, []);
 
   const active = slides[index];
-  const hidden = slides[(index + 1) % slides.length];
+  const hidden = slides[prevIndex];
 
   return (
     <div className="w-screen h-screen relative overflow-hidden font-mono">
@@ -109,7 +112,7 @@ export default function FruitSliderFive() {
           }}
         />
 
-        {/* OUTGOING FRUIT */}
+        {/* OUTGOING FRUIT (correct order now) */}
         <img
           src={hidden.img}
           alt=""
@@ -138,7 +141,6 @@ export default function FruitSliderFive() {
             backgroundSize: "cover, auto 100%",
             backgroundBlendMode: "multiply",
             transition: "background-position 0.5s linear",
-
             WebkitMaskImage: `url(${mockup})`,
             WebkitMaskRepeat: "no-repeat",
             WebkitMaskSize: "cover",
