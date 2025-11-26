@@ -86,7 +86,7 @@ export default function FruitSliderFive() {
       >
         {/* FRUIT NAME */}
         <div
-          className="absolute text-white font-extrabold uppercase text-[6rem] md:text-[12rem]"
+          className="absolute text-white font-extrabold uppercase text-[clamp(3.5rem,10vw,8rem)] z-20"
           style={{
             top: "50%",
             left: "50%",
