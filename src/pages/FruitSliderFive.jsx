@@ -122,6 +122,7 @@ export default function FruitSliderFive() {
       </div>
 
       {/* MOCKUP FRAME */}
+      {/* MOCKUP FRAME */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
         style={{
@@ -129,26 +130,42 @@ export default function FruitSliderFive() {
           height: "calc(673px / 1.5)",
           overflow: "hidden",
           borderRadius: "20px",
+          position: "relative",
+          transformStyle: "preserve-3d",
         }}
       >
+        {/* STABILIZER — stops drifting */}
         <div
           style={{
-            width: "100%",
-            height: "100%",
-            backgroundImage: `url(${mockup}), url(${listSoda})`,
-            backgroundRepeat: "no-repeat, repeat-x",
-            backgroundPosition: `center, ${offset}px 0`,
-            backgroundSize: "cover, auto 100%",
-            backgroundBlendMode: "multiply",
-            transition: "background-position 0.5s linear",
-            WebkitMaskImage: `url(${mockup})`,
-            WebkitMaskRepeat: "no-repeat",
-            WebkitMaskSize: "cover",
-            maskImage: `url(${mockup})`,
-            maskRepeat: "no-repeat",
-            maskSize: "cover",
+            position: "absolute",
+            inset: 0,
+            overflow: "hidden",
+            transformOrigin: "center center",
+            transform: "translateZ(0)", // GPU lock for anti-drift
           }}
-        />
+        >
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage: `url(${mockup}), url(${listSoda})`,
+              backgroundRepeat: "no-repeat, repeat-x",
+              backgroundPosition: `center, ${offset}px 0`,
+              backgroundSize: "cover, auto 100%",
+              backgroundBlendMode: "multiply",
+              transition: "background-position 0.5s linear",
+
+              WebkitMaskImage: `url(${mockup})`,
+              WebkitMaskRepeat: "no-repeat",
+              WebkitMaskSize: "cover",
+              maskImage: `url(${mockup})`,
+              maskRepeat: "no-repeat",
+              maskSize: "cover",
+
+              transformOrigin: "center center",
+            }}
+          />
+        </div>
       </div>
 
       {/* LEAVES DECORATION */}
